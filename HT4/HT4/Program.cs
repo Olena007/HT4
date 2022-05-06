@@ -8,47 +8,71 @@ namespace HT4
         {
             Console.WriteLine("Укажите размер массивов");
             int num = Convert.ToInt32(Console.ReadLine());
-            char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-            char count = ' ';
-            int result = 0;
-            char[] input = { 'a', 'e', 'i', 'd', 'h', 'j' };
+            string[] arr_even = new string[num];
+            string[] arr_odd = new string[num];
             int c_even = 0;
             int c_odd = 0;
-            if (num > 0)
+            ODDandEVEN();
+            NumberToLetter();
+            MostUppercase();
+
+            void ODDandEVEN()
             {
-                string[] arr_even = new string[num];
-                string[] arr_odd = new string[num];
-                Console.WriteLine(" ");
-                Console.WriteLine("четные числа");
-                for (int i = 0; i < arr_even.Length; i++)
+                if (num > 0)
                 {
-                    int a = new Random().Next(1, 26);
-                    if (a % 2 == 0)
+                    Console.WriteLine("четные числа");
+                    for (int i = 0; i < arr_even.Length; i++)
                     {
-                        arr_even[i] = a.ToString();
-                        Console.Write(arr_even[i] + " ");
+                        int a = new Random().Next(1, 26);
+                        if (a % 2 == 0)
+                        {
+                            arr_even[i] = a.ToString();
+                            Console.Write(arr_even[i] + " ");
+                        }
+                        else
+                        {
+                            i--;
+                        }
                     }
-                    else
+
+                    Console.WriteLine(" ");
+                    Console.WriteLine("нечетные числа");
+
+                    for (int i = 0; i < arr_odd.Length; i++)
                     {
-                        i--;
+                        int b = new Random().Next(1, 26);
+                        if (b % 2 == 1)
+                        {
+                            arr_odd[i] = b.ToString();
+                            Console.Write(arr_odd[i] + " ");
+                        }
+                        else
+                        {
+                            i--;
+                        }
                     }
                 }
-
-                Console.WriteLine(" ");
-                Console.WriteLine("нечетные числа");
-
-                for (int i = 0; i < arr_odd.Length; i++)
+                else
                 {
-                    int b = new Random().Next(1, 26);
-                    if (b % 2 == 1)
+                    Console.WriteLine($"Массив не может состоять из {num} єлементов");
+                }
+            }
+
+            void NumberToLetter()
+            {
+                char[] alphabet = new char[26];
+                int count_char = 0;
+                char count = ' ';
+                int result = 0;
+
+                for (int i = 97; i <= 122; i++)
+                {
+                    if (count_char < 26)
                     {
-                        arr_odd[i] = b.ToString();
-                        Console.Write(arr_odd[i] + " ");
+                        alphabet[count_char] = (char)i;
                     }
-                    else
-                    {
-                        i--;
-                    }
+
+                    count_char++;
                 }
 
                 Console.WriteLine(" ");
@@ -102,7 +126,10 @@ namespace HT4
 
                     Console.Write(arr_odd[i] + " ");
                 }
+            }
 
+            void MostUppercase()
+            {
                 Console.WriteLine(" ");
                 Console.WriteLine("Больше всего букв в верхнем регистре в этом массиве:");
                 for (int i = 0; i < num; i++)
@@ -120,10 +147,6 @@ namespace HT4
                         Console.Write("Одинаково");
                     }
                 }
-            }
-            else
-            {
-                Console.WriteLine($"Массив не может состоять из {num} єлементов");
             }
         }
     }
